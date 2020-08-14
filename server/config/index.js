@@ -1,7 +1,8 @@
 const path = require('path');
-require('dotenv').config({ path: path.join(__dirname + '/../../.env') });
 
 global.isProduction = process.env.NODE_ENV === 'production';
+
+if (!global.isProduction) require('dotenv').config({ path: path.join(__dirname + '/../../.env') });
 
 module.exports = {
 	secretString: process.env.CONTROL_STRING,
