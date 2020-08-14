@@ -11,6 +11,11 @@ const routes = {
 
 /* Application controller handler */
 module.exports = app => {
+	// redirect to https in production;
+	if (global.isProduction) {
+		app.use((req, res, next) => req.header('x-forwarded-proto') !== 'https' ? res.redirect(`https://${ req.header('host') }${ req.url }`) : next())
+	}
+
 	/* static path and file */
 	app.use(express.static(path.join(__dirname, '../dist')));
 	app.get('*', (req, res) => {
