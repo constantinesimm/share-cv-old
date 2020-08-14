@@ -5,8 +5,12 @@ class FileSystem {
     static stats(path) {
         fs.stat(path, (error, stats) => {
             if (error) return new HttpError(500, error.message);
-            return stats
+            else return stats;
         })
+    }
+
+    static readStream(path) {
+        return fs.createReadStream(path)
     }
 }
 

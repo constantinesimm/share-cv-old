@@ -1,27 +1,31 @@
 const app = require('express')();
-
-/* Libraries */
-const connectMongoDB = require('./libs/database/mongoose');
-
-/* Middleware */
+const connectMongoDatabase = require('./libs/database/mongoose');
 const setController = require('./controller');
 const setErrorHandler = require('./middleware/error-handler');
-const setResponseParser = require('./middleware/response-parsers-handler');
-const setSecureHandler = require('./middleware/secure-handler');
+const setAppMiddleware = require('./middleware/app-middleware');
 
-/* connect database */
-connectMongoDB();
+/**
+ *  Connect Mongo Database
+ *  Mongoose package
+ */
+connectMongoDatabase();
 
-/* Secure middleware */
-setSecureHandler(app);
+/**
+ *  App middleware:
+ *  Secure - helmet package
+ *  Secure - CORS package
+ *  Request parser - body-parser package
+ */
+setAppMiddleware(app);
 
-/* Request body parser middleware */
-setResponseParser(app);
-
-/* Router */
+/**
+ *  App Router Controller
+ */
 setController(app);
 
-/* Error handler */
+/**
+ * App Error handler middleware
+ */
 setErrorHandler(app);
 
 module.exports = app;
