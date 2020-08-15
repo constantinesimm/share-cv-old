@@ -1,7 +1,7 @@
 <template>
   <el-header class="app-header">
     <div class="app-header__menu">
-      <router-link class="app-header__brand" to="/">
+      <router-link class="app-header__brand" :to="`/${ $i18n.locale }`">
         <img class="app-header__brand-logo" :src="logo" />
         <span class="app-header__brand-title">Share CV</span>
       </router-link>

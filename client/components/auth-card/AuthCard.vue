@@ -9,8 +9,8 @@
             <RegisterForm v-show="isRegisterPage" ref="registerForm"></RegisterForm>
         </div>
         <div class="auth-card__footer">
-            <el-link v-show="isLoginPage" href="/admin/register" icon="fas fa-user-plus">{{ $t('links.registerPage') }}</el-link>
-            <el-link v-show="isRegisterPage" href="/admin/login" icon="fas fa-sign-in-alt">{{ $t('links.loginPage') }}</el-link>
+            <el-link v-show="isLoginPage" :href="`/${ $i18n.locale }/admin/register`" icon="fas fa-user-plus">{{ $t('links.registerPage') }}</el-link>
+            <el-link v-show="isRegisterPage" :href="`/${ $i18n.locale }/admin/login`" icon="fas fa-sign-in-alt">{{ $t('links.loginPage') }}</el-link>
             <el-button type="info" plain round size="mini" @click="toggleModalState" icon="far fa-life-ring"> {{ $t('buttons.restorePasswordModal') }}</el-button>
         </div>
         <ForgotPasswordModal :modal-state="isModalVisible" @hide-modal="toggleModalState"/>

@@ -9,14 +9,12 @@
 </template>
 
 <script>
-import AuthCard from '@/components/auth-card/AuthCard';
+    import AuthCard from '@/components/auth-card/AuthCard';
+
     export default {
         name: 'AuthPage',
         components: {
             AuthCard
-        },
-        mounted() {
-            console.log(this.$route)
         }
     }
 </script>
