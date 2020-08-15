@@ -11,45 +11,35 @@ const withPrefix = (prefix, routes) => routes.map((route) => {
 
 const routes = [
         {
-            path: '/', 
-            redirect: `/${ defaultLocale }`
-        },
-        {
-        path: '/:lang',
-        meta: {
-            layout: 'admin'
-        },
-		children: [
-            {
-                path: '',
-                meta: {
-                    layout: 'admin'
-                },
-                component: () => import('../views/MainPage')
+            path: '/',
+            meta: {
+                layout: 'admin',
+                pageTitle: `pageTitles.login`
             },
-            ...withPrefix('admin', [
-                {
-                    path: '/login',
-                    meta: {
-                        layout: 'admin',
-                        pageTitle: `pageTitles.login`,
-                        pageType: 'login'
+            alias: `/:lang`,
+            children: [
+                ...withPrefix(':lang/admin', [
+                    {
+                        path: '/login',
+                        meta: {
+                            layout: 'admin',
+                            pageTitle: `pageTitles.login`,
+                            pageType: 'login'
+                        },
+                        component: () => import('../views/AuthPage')
                     },
-                    component: () => import('../views/AuthPage')
-                },
-                {
-                    path: '/register',
-                    meta: {
-                        layout: 'admin',
-                        pageTitle: 'pageTitles.register',
-                        pageType: 'register'
-                    },
-                    component: () => import('../views/AuthPage')
-                }
-            ]),
-        ]
-	},
-    
+                    {
+                        path: '/register',
+                        meta: {
+                            layout: 'admin',
+                            pageTitle: 'pageTitles.register',
+                            pageType: 'register'
+                        },
+                        component: () => import('../views/AuthPage')
+                    }
+                ]),
+            ]
+        },
 ];
 
 Vue.use(VueRouter);
@@ -65,8 +55,6 @@ router.beforeEach((to, from, next) => {
     /**
      * Route Guard to check /change requested language
      */
-    
-    
     if (to.params.lang) {
         const lang = to.params.lang;
         const fullPath = to.fullPath;
