@@ -2,31 +2,19 @@
 import Vue from 'vue';
 import App from './App.vue';
 
-/* UI libraries and components */
-import ElementUI from 'element-ui';
-
 /* Router & Store */
 import router from './router';
 import store from './store';
 
-/* Directives */
-import AwesomeMask from 'awesome-mask';
+/* App packages */
+import './app-packages';
 
-/* Libs and Plugins */
-import locale from 'element-ui/lib/locale/lang/ru-RU';
-
-/* Core styles */
-import 'element-ui/lib/theme-chalk/index.css';
-
-Vue.config.productionTip = process.env.NODE_ENV !== 'production';
-
-Vue.prototype.$eventHub = new Vue();
-
-Vue.directive('mask', AwesomeMask);
-Vue.use(ElementUI, { locale });
+/* Internalization */
+import i18n from '@/libs/i18n';
 
 new Vue({
-  //router: router,
-  store,
-  render: h => h(App)
+    i18n,
+    store,
+    router: router,
+    render: h => h(App)
 }).$mount('#app')
