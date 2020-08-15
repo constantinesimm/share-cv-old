@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const { secretString, sessionSecretString } = require('../../../config');
 const localeMessages = require('../../../libs/i18n');
 
-class UserAuthService {
+class HelperService {
     static createToken(type, data) {
         const expiresTime = type === 'access' ? '3h' : '24h';
 
@@ -22,4 +22,4 @@ class UserAuthService {
     }
 }
 
-module.exports = UserAuthService;
+module.exports = HelperService;

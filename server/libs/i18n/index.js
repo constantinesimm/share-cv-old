@@ -1,11 +1,7 @@
-const enMsg = require('./locales/en');
-const ukMsg = require('./locales/uk');
-const ruMsg = require('./locales/ru');
-
-const locales = {
-    en: enMsg,
-    uk: ukMsg,
-    ru: ruMsg
+const messages = {
+    en: require('./locales/en'),
+    uk: require('./locales/uk'),
+    ru: require('./locales/ru')
 };
 
-module.exports = (lang) => locales[lang];
+module.exports = (lang) => messages[lang];
