@@ -5,7 +5,7 @@ class FileSystem {
     static stats(path) {
         fs.stat(path, (error, stats) => {
             if (error) return new HttpError(500, error.message);
-            else return stats;
+            return stats;
         })
     }
 
