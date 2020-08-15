@@ -1,12 +1,14 @@
 import Axios from 'axios';
 import store from '../store';
+import { i18n } from '@/libs/i18n';
 
 const getClient = (baseUrl = null) => {
     let options = {
         baseURL: baseUrl,
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json; charset=utf-8'
+            'Content-Type': 'application/json; charset=utf-8',
+            'Accept-Language': i18n.locale
         }
     };
 

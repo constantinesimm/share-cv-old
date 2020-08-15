@@ -7,11 +7,13 @@ const indexHtml = path.join(__dirname, `../dist/index.html`);
 
 /* Application API endpoints */
 const routes = {
-	
+	auth: require('./modules/users/routes/user-auth')
 };
 
 /* Application controller handler */
 module.exports = app => {
+    app.use('/api/v1/users', routes.auth);
+
 	// redirect to https in production;
 	if (global.isProduction) {
 		app.use((req, res, next) => {
