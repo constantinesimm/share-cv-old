@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import store from '../store';
+import i18n from '@/libs/i18n';
+import Locale from '@/libs/locale';
 
 const withPrefix = (prefix, routes) => routes.map((route) => {
 	route.path = prefix + route.path;
@@ -9,12 +11,34 @@ const withPrefix = (prefix, routes) => routes.map((route) => {
 
 const routes = [
 	{
-		path: '/',
-		redirect: '/dashboard'
+		path: '/:lang',
+		meta: {
+		  layout: 'admin'
+        }
 	},
+    ...withPrefix('/:lang/admin', [
+        {
+            path: '/login',
+            meta: {
+                layout: 'admin',
+                pageTitle: `pageTitles.login`,
+                pageType: 'login'
+            },
+            component: () => import('../views/AuthPage')
+        },
+        {
+            path: '/register',
+            meta: {
+                layout: 'admin',
+                pageTitle: 'pageTitles.register',
+                pageType: 'register'
+            },
+            component: () => import('../views/AuthPage')
+        }
+    ]),
 	{
 		path: '*',
-		redirect: '/'
+		redirect: '/:lang'
 	}
 ];
 
@@ -25,6 +49,31 @@ const router = new VueRouter({
 	mode: 'history',
 	linkActiveClass: '',
 	linkExactActiveClass: 'is-current-page'
+});
+
+router.beforeEach((to, from, next) => {
+    /**
+     * Route Guard to check /change requested language
+     */
+    if (to.params.lang || !to.params.lang) {
+        const lang = to.params.lang;
+        const fullPath = to.fullPath;
+
+        if (Locale.checkRouteParam(lang)) return next(Locale.changeRouteToDefaultLocale(fullPath, lang));
+        if (!Locale.checkCurrentLocale(i18n.locale, lang)) i18n.locale = lang;
+        Locale.setLangAttribute(i18n.locale);
+
+        next();
+    }
+
+    /**
+     * Get and set page title from route meta tag
+     */
+
+    if (to.matched.some(record => record.meta.pageTitle)) {
+        document.title = i18n.t(to.meta.pageTitle);
+        next();
+    }
 });
 
 export default router;

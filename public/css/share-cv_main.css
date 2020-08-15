@@ -2,4 +2,9 @@ body {
     margin: 0!important;
     width: 100vw;
     height: 100vh;
+    background: #eff1ea;
+}
+
+a > i {
+    margin-right: 5px;
 }
