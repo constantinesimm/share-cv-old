@@ -1,6 +1,6 @@
 class Locale {
     static checkRouteParam(lang) {
-        return !['en','uk', 'ru'].includes(lang);
+        return ['en','uk', 'ru'].includes(lang);
     }
 
     static checkCurrentLocale(currentLang, newLang) {

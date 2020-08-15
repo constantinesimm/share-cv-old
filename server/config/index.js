@@ -9,7 +9,7 @@ module.exports = {
 	sessionSecretString: process.env.SESSION_CONTROL_STRING,
 	database: {
 		mongo: {
-			uri: !global.isProduction ? `mongodb://localhost:27017/${ process.env.DB_NAME }` :
+			uri: global.isProduction ? `mongodb://localhost:27017/${ process.env.DB_NAME }` :
 				`mongodb+srv://${ process.env.DB_USER }:${ process.env.DB_USER_PASS }@${ process.env.DB_HOST }/${ process.env.DB_NAME }?retryWrites=true&w=majority`,
 			options: {
 				useNewUrlParser: true,

@@ -1,8 +1,9 @@
+const fs = require('fs');
 const path = require('path');
 const express = require('express');
-const FileSystem = require('./libs/fs');
+const HttpError = require('./libs/errors/http-error');
 
-const indexHtml = path.join(__dirname, `../${ global.isProduction ? 'dist' : 'public' }/index.html`);
+const indexHtml = path.join(__dirname, `../dist/index.html`);
 
 /* Application API endpoints */
 const routes = {
@@ -19,8 +20,12 @@ module.exports = app => {
 	/* static path and file */
 	app.use(express.static(path.join(__dirname, '../dist')));
 	app.get('*', (req, res) => {
-		res.set({ 'Content-Type': 'text/html; charset=utf-8', 'Content-Length': FileSystem.stats(indexHtml).size })
+		fs.stat(indexHtml, (error, stats) => {
+			if (error) return new HttpError(500, error.message);
+			
+            res.set({ 'Content-Type': 'text/html; charset=utf-8', 'Content-Length': stats.size })
+        })
 		
-		FileSystem.readStream(indexHtml).pipe(res);
+		fs.createReadStream(indexHtml).pipe(res);
 	});
 };

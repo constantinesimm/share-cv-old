@@ -14,9 +14,6 @@ import AuthCard from '@/components/auth-card/AuthCard';
         name: 'AuthPage',
         components: {
             AuthCard
-        },
-        mounted() {
-            console.log(this.$route)
         }
     }
 </script>

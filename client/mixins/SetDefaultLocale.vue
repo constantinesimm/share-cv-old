@@ -1,12 +1,12 @@
 <script>
-    import Locale from '@/libs/locale';
+    import Locale from '@/libs/i18n/locale';
 
     export default {
         name: 'SetDefaultLocale',
         mounted() {
             const routeLocale = this.$route.params.lang;
 
-            if (routeLocale && routeLocale !== this.$i18n.locale) {
+            if (routeLocale) {
                 this.$i18n.locale = routeLocale;
                 this.currentLang = routeLocale;
             }
