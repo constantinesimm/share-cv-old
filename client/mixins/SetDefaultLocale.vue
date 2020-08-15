@@ -6,7 +6,7 @@
         mounted() {
             const routeLocale = this.$route.params.lang;
 
-            if (routeLocale) {
+            if (routeLocale && routeLocale !== this.$i18n.locale) {
                 this.$i18n.locale = routeLocale;
                 this.currentLang = routeLocale;
             }
