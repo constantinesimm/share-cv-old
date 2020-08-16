@@ -1,8 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { secretString, sessionSecretString } = require('../../../config');
-const localeMessages = require('../../../libs/i18n');
 
-class HelperService {
+class Helper {
     static createToken(type, data) {
         const expiresTime = type === 'access' ? '3h' : '24h';
 
@@ -14,12 +13,6 @@ class HelperService {
             return error ? error : decoded;
         })
     }
-
-    static getLanguageHeader(request) {
-        const language = request.header('accept-language') || 'en';
-
-        return localeMessages(language);
-    }
 }
 
-module.exports = HelperService;
+module.exports = Helper;

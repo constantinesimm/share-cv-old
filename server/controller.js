@@ -4,15 +4,16 @@ const express = require('express');
 const HttpError = require('./libs/errors/http-error');
 
 const indexHtml = path.join(__dirname, `../dist/index.html`);
+const staticPath = path.join(__dirname, '../dist');
 
 /* Application API endpoints */
 const routes = {
-	auth: require('./modules/users/routes/user-auth')
+	account: require('./modules/users/routes/user-account')
 };
 
 /* Application controller handler */
 module.exports = app => {
-    app.use('/api/v1/users', routes.auth);
+    app.use('/api/v1/users', routes.account);
 
 	// redirect to https in production;
 	if (global.isProduction) {
@@ -22,13 +23,12 @@ module.exports = app => {
 	}
 
 	/* static path and file */
-	app.use(express.static(path.join(__dirname, '../dist')));
-	app.get('*', (req, res) => {
-        fs.stat(indexHtml, (error, stats) => {
-            if (error) return new HttpError(500, error.message);
+	app.use(express.static(staticPath));
 
-            res.set({ 'Content-Type': 'text/html; charset=utf-8', 'Content-Length': stats.size })
-        })
+	app.get('*', (req, res) => {		
+		fs.stat(indexHtml, (err, stats) => err ? new HttpError(500, error.message) : res.set({ 
+			'Content-Type': 'text/html; charset=utf-8', 'Content-Length': stats.size 
+		}))
 		
 		fs.createReadStream(indexHtml).pipe(res);
 	});

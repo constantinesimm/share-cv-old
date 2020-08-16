@@ -4,4 +4,11 @@ const messages = {
     ru: require('./locales/ru')
 };
 
-module.exports = (lang) => messages[lang];
+module.exports = (request) => {
+    const language = request.header('accept-language') || process.env.DEFAULT_LOCALE;
+
+    return {
+        lang: language,
+        messages: messages[language]
+    };
+}
