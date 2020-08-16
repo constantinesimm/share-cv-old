@@ -14,6 +14,6 @@ const validator = (schema, data, next) => ajv.validate(schema, data) ? next() : 
 
 module.exports = {
     loginOrRegister(req, res, next) {
-        return validator(Schemas(locale(req)).createOrLogin, req.body, next);
+        return validator(Schemas(locale(req).messages).createOrLogin, req.body, next);
     }
 }
