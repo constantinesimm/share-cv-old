@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import store from '../store';
+import store from '../../store';
 import { i18n } from '@/libs/i18n';
 
 const getClient = (baseUrl = null) => {
