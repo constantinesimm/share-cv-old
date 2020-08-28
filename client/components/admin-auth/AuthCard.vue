@@ -43,8 +43,8 @@
         },
         data() {
             return {
-                isModalVisible: false,
-                form: null
+                form: null,
+                isModalVisible: false
             }
         },
         computed: {
