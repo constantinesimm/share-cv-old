@@ -8,7 +8,7 @@ class AuthHeader {
         return Storage.getItem('share-cv__auth')
     }
     static removeToken() {
-        return Storage.removeToken('share-cv__auth')
+        return Storage.removeItem('share-cv__auth')
     }
 }
 

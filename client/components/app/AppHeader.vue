@@ -35,6 +35,7 @@
         handleLogout() {
           const user = { email: this.$store.getters['auth/getUser'].email };
 
+            console.log(user);
           this.$store.dispatch('auth/logout', user)
             .then(response => this.$message.success(response.message))
             .catch(error => this.$message.error(error.message))

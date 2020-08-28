@@ -1,7 +1,5 @@
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
-const passport = require('passport');
-const setPassportConfig = require('./passport/passport-local');
 
 module.exports = (app) => {
     // Request body parsing middleware
@@ -12,16 +10,13 @@ module.exports = (app) => {
     app.use(helmet.noSniff());
     app.use(helmet.xssFilter());
     app.use(helmet.hidePoweredBy({ setTo: 'PHP 4.2.0' }));
-    
+
     // Cross-origin resource sharing
-    if (!global.isProduction) {
+    if (process.env.NODE_ENV !== 'production') {
         app.use(require('cors')({
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'POST, OPTIONS',
-            'Access-Control-Allow-Headers': 'Origin, Content-Type, Accept, Authorization',
+            'Access-Control-Allow-Headers': 'Origin, Content-Type, Accept, Accept-Language, Authorization',
         }));
     }
-
-    app.use(passport.initialize());
-    setPassportConfig(passport);
 };

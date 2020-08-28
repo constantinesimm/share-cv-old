@@ -70,7 +70,7 @@ module.exports = {
         },
         register: {
             greetings: 'Welcome!',
-            headerText: 'Thank you for registering and sincerely hope that our service will help you achieve your goal :)',
+            headerText: 'Thank you for registering and sincerely hope that our services will help you achieve your goal :)',
             bodyContent: 'Please follow the link to complete registration and activate your account.',
             bodyWarning: 'Pay attention!',
             bodyLinkExpiresText: 'The link is valid for 24 hours!',
@@ -79,7 +79,7 @@ module.exports = {
         activated: {
             greetings: 'Hello, !',
             headerText: 'Your account has been successfully activated.',
-            bodyContent: 'Use your email and password to enter the service admin panel.',
+            bodyContent: 'Use your email and password to enter the services admin panel.',
             bodyLoginLink: 'The login page is available at the link below.',
             buttonText: 'Go to the admin panel'
         },

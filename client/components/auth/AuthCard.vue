@@ -14,8 +14,8 @@
             </div>
 
             <div class="auth-card-footer">
-                <el-link v-show="isLoginPage" :href="`/admin/register`" icon="fas fa-user-plus">{{ $t('links.registerPage') }}</el-link>
-                <el-link v-show="isRegisterPage" :href="`/admin/login`" icon="fas fa-sign-in-alt">{{ $t('links.loginPage') }}</el-link>
+                <el-link v-show="isLoginPage" :href="`/users/register`" icon="fas fa-user-plus">{{ $t('links.registerPage') }}</el-link>
+                <el-link v-show="isRegisterPage" :href="`/users/login`" icon="fas fa-sign-in-alt">{{ $t('links.loginPage') }}</el-link>
                 <el-button type="info" plain round size="mini" @click="toggleModalState" icon="far fa-life-ring"> {{ $t('buttons.restorePasswordModal') }}</el-button>
             </div>
 
@@ -25,10 +25,10 @@
 </template>
 
 <script>
-    import LoginForm from '@/components/admin-auth/LoginForm';
-    import RegisterForm from '@/components/admin-auth/RegisterForm';
-    import VerifyForm from '@/components/admin-auth/VerifyForm';
-    import ForgotPasswordModal from '@/components/admin-auth/ForgotPasswordModal';
+    import LoginForm from '@/components/auth/LoginForm';
+    import RegisterForm from '@/components/auth/RegisterForm';
+    import VerifyForm from '@/components/auth/VerifyForm';
+    import ForgotPasswordModal from '@/components/auth/ForgotPasswordModal';
 
     export default {
         name: 'AuthCard',

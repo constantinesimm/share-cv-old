@@ -1,5 +1,5 @@
 const locale = require('../../libs/i18n');
-const HttpError = require('../../libs/errors/http-error');
+const HttpError = require('../../libs/http-error');
 const Helper = require('../../modules/users/services/help-service');
 const UserService = require('../../modules/users/services/user-service');
 

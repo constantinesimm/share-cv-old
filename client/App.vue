@@ -1,6 +1,8 @@
 <template>
   <component id="app" :is="layout">
-    <router-view />
+    <transition name="el-zoom-in-center" mode="out-in">
+        <router-view />
+    </transition>
   </component>
 </template>
 

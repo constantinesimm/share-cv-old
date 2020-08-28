@@ -1,48 +1,43 @@
 import ApiClient from '@/plugins/http/http-client';
 
-const BASE_URL = process.env.NODE_ENV === 'production' ? 
-    process.env.APP_VUE_PROD_URL : process.env.APP_VUE_DEV_URL;
-
 const ENDPOINTS = {
-    LOGIN: '/api/v1/users/login',
-    LOGOUT: '/api/v1/users/logout',
-    CHECK_TOKEN: '/api/v1/users/check-serviceToken',
-    REGISTER: '/api/v1/users/register',
-    VERIFY: '/api/v1/users/verify',
-    PASS_RECOVERY: '/api/v1/users/pass-recovery'
+    LOGIN: '/api/v1/users/auth/login',
+    LOGOUT: '/api/v1/users/auth/logout',
+    REGISTER: '/api/v1/users/auth/register',
+    PASS_RESET: '/api/v1/users/auth/password-reset',
+    EMAIL_CONFIRM: '/api/v1/users/auth/email-confirm',
+    TOKEN_VERIFY: '/api/v1/users/auth/token-verify',
 }
-
-const client = new ApiClient(BASE_URL);
 
 export default {
     login(user) {
-        return client.post(ENDPOINTS.LOGIN, user)
+        return ApiClient.post(ENDPOINTS.LOGIN, user)
             .then(response => Promise.resolve(response.data))
             .catch(error => Promise.reject(error.response.data))
     },
     logout(user) {
-        return client.post(ENDPOINTS.LOGOUT, user)
+        return ApiClient.post(ENDPOINTS.LOGOUT, user)
             .then(response => Promise.resolve(response.data))
-            .catch(error => Promise.resolve(error.response.data))
+            .catch(error => Promise.reject(error.response.data))
     },
     register(user) {
-        return client.post(ENDPOINTS.REGISTER, user)
+        return ApiClient.post(ENDPOINTS.REGISTER, user)
             .then(response => Promise.resolve(response.data))
-            .catch(error => Promise.resolve(error.response.data))
+            .catch(error => Promise.reject(error.response.data))
     },
-    passwordRecovery(user) {
-        return client.post(ENDPOINTS.PASS_RECOVERY, user)
+    passwordReset(user) {
+        return client.post(ENDPOINTS.PASS_RESET, user)
             .then(response => Promise.resolve(response.data))
-            .catch(error => Promise.resolve(error.response.data))
+            .catch(error => Promise.reject(error.response.data))
     },
-    userVerify(user) {
-        return client.post(ENDPOINTS.VERIFY, user)
+    emailConfirm(user) {
+        return ApiClient.post(ENDPOINTS.EMAIL_CONFIRM, user)
             .then(response => Promise.resolve(response.data))
-            .catch(error => Promise.resolve(error.response.data))
+            .catch(error => Promise.reject(error.response.data))
     },
-    checkToken(data) {
-        return client.post(ENDPOINTS.CHECK_TOKEN, data)
+    tokenVerify(user) {
+        return ApiClient.post(ENDPOINTS.TOKEN_VERIFY, user)
             .then(response => Promise.resolve(response.data))
-            .catch(error => Promise.resolve(error.response.data))
+            .catch(error => Promise.reject(error.response.data))
     }
 }

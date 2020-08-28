@@ -52,10 +52,10 @@ export default {
             this.$emit('hide-modal', true);
         },
         submitForm() {
-            this.isFormSubmited = true;
+            this.isSubmitLoading = true;
 
             this.$store
-                .dispatch('auth/passRecovery', this.form)
+                .dispatch('auth/passwordReset', this.form)
                 .then(response => {
                     this.$message.success(response);
                     this.hideModal();

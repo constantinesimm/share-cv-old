@@ -9,7 +9,7 @@
 </template>
 
 <script>
-    import AuthCard from '@/components/admin-auth/AuthCard';
+    import AuthCard from '@/components/auth/AuthCard';
 
     export default {
         name: 'AuthPage',

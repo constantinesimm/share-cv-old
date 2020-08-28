@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const locale = require('../../../libs/i18n');
 const passport = require('passport');
 const Helper = require('./help-service');
-const HttpError = require('../../../libs/errors/http-error');
+const HttpError = require('../../../libs/http-error');
 const UserAuthModel = require('../models/auth-model');
 const sendEmailMessage = require('../../../libs/mailer/nodemailer');
 
@@ -16,13 +16,13 @@ class UserService {
             if (error) return next(new HttpError(error));
             if (!user) {
                 const errMsg = info.status === 404 ? msg.error.userNotFound : info.status === 403 ? msg.error.accountNotActive : info.message;
-                
+
                 return next(new HttpError(info.status, errMsg));
             };
-    
+
             return req.logIn(user, (error) => {
                 if (error) return next(new HttpError(error.status, msg.error.incorrectCredentials))
-                
+
                 return res.json(user);
             });
         })(req, res, next);
@@ -54,7 +54,7 @@ class UserService {
                         UserAuthModel.create(newAccount, (err, user) => {
                             if (err) return reject({ status: 500, message: err.message });
                             sendEmailMessage(lang, msg, 'registerConfirm', user.email, msg.email.recipient, user.serviceToken)
-                            
+
                             return resolve({ message: msg.success.sentEmailInvite, user: user });
                         })
                     })

@@ -3,7 +3,9 @@
     <app-header />
 
     <el-main class="app-content">
-        <slot />
+        <transition name="el-zoom-in-center" mode="out-in">
+            <slot />
+        </transition>
     </el-main>
 
     <app-footer />

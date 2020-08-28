@@ -1,11 +1,11 @@
-const HttpError = require('../errors/http-error');
+const HttpError = require('../http-error');
 const locale = require('../i18n');
 const Schemas = require('./schemas');
 
-const ajv = require('ajv')({ 
-    $data: true, 
-    allErrors: true, 
-    jsonPointers: true 
+const ajv = require('ajv')({
+    $data: true,
+    allErrors: true,
+    jsonPointers: true
 });
 require('ajv-keywords')(ajv);
 require('ajv-errors')(ajv, { singleError: true });

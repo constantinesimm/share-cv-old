@@ -12,10 +12,10 @@ const mutations = {
     AUTH_REQUEST(state) {
         state.status = 'pending'
     },
-    AUTH_SUCCESS(state, token, user) {
+    AUTH_SUCCESS(state, payload) {
         state.status = 'success';
-        state.token = token;
-        state.user = user;
+        state.token = payload.token;
+        state.user = payload;
         state.isAuthenticated = true;
     },
     AUTH_ERROR(state) {
@@ -26,7 +26,7 @@ const mutations = {
         state.token = null;
         state.user = {};
         state.isAuthenticated = false;
-    },
+    }
 };
 const actions = {
 	login({ commit }, user) {
@@ -35,12 +35,32 @@ const actions = {
 
             AuthService.login(user)
                 .then(response => {
-                    commit('AUTH_SUCCESS', response.token, response.user);
-                    AuthHeader.setToken(response.token);
+                    commit('AUTH_SUCCESS', response.user);
+                    AuthHeader.setToken(response.user.token);
 
-                    return resolve(response.message)
+                    return resolve(response)
                 })
                 .catch(error => {
+                    commit('AUTH_ERROR');
+                    if (AuthHeader.getToken()) AuthHeader.removeToken();
+
+                    return reject(error);
+                })
+        })
+    },
+    logout({ commit }, user) {
+        return new Promise((resolve, reject) => {
+            commit('AUTH_REQUEST');
+
+            AuthService.logout(user)
+                .then(response => {
+                    commit('AUTH_LOGOUT');
+                    AuthHeader.removeToken();
+
+                    return resolve(response);
+                })
+                .catch(error => {
+                    commit('AUTH_LOGOUT');
                     commit('AUTH_ERROR');
                     AuthHeader.removeToken();
 
@@ -53,43 +73,26 @@ const actions = {
             commit('AUTH_REQUEST');
 
             AuthService.register(user)
-                .then(response => {
-
-                })
-                .catch(error => {
-
-                })
+                .then(response => resolve(response))
+                .catch(error => reject(error))
         })
     },
-    logout({ commit }, user) {
+    passwordReset({ commit }, user) {
         return new Promise((resolve, reject) => {
             commit('AUTH_REQUEST');
 
-            AuthService.logout(user)
-                .then(response => {
-                    commit('AUTH_LOGOUT');
-
-                    return resolve(response);
-                })
-                .catch(error => {
-                    commit('AUTH_ERROR');
-
-                    return reject(error);
-                })
-                .finally(() => AuthHeader.removeToken());
+            AuthService.passwordReset(user)
+                .then(response => resolve(response))
+                .catch(error => reject(error))
         })
     },
-    passwordRecovery({ commit }, user) {
+    emailConfirm({ commit }, user) {
         return new Promise((resolve, reject) => {
             commit('AUTH_REQUEST');
 
-            AuthService.passwordRecovery(user)
-                .then(response => {
-
-                })
-                .catch(error => {
-
-                })
+            AuthService.emailConfirm(user)
+                .then(response => resolve(response))
+                .catch(error => reject(error))
         })
     }
 };

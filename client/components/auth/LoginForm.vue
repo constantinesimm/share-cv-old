@@ -38,10 +38,13 @@
 
                 this.$store
                     .dispatch('auth/login', this.form)
-                    .then(response => {})
+                    .then(response => this.$message.success(response.message))
                     .catch(error => this.$message.error(error.message))
-                    .finally(() => this.isSubmitLoading = false)
-                
+                    .finally(() => {
+                        this.isSubmitLoading = false;
+                        this.$router.push({ name: 'admin-index' })
+                    })
+
             }
         }
     }

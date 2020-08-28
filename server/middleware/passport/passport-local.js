@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs');
-const HttpError = require('../../libs/errors/http-error');
+const HttpError = require('../../libs/http-error');
 const LocalStrategy = require('passport-local').Strategy;
 const Helper = require('../../modules/users/services/help-service');
 const UserService = require('../../modules/users/services/user-service');
@@ -7,10 +7,10 @@ const UserAuthModel = require('../../modules/users/models/auth-model');
 
 module.exports = (passport) => {
     passport.use(
-        new LocalStrategy({ 
-            usernameField: 'email', 
+        new LocalStrategy({
+            usernameField: 'email',
             passwordField: 'secret'
-        }, 
+        },
         (username, password, done) => {
             UserAuthModel
                 .findOne({ email: username })

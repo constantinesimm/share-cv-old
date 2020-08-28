@@ -1,5 +1,5 @@
 const app = require('express')();
-const connectMongoDatabase = require('./libs/database/mongoose');
+const connectMongoDatabase = require('./libs/mongoose');
 const setController = require('./controller');
 const setErrorHandler = require('./middleware/error-handler');
 const setAppMiddleware = require('./middleware/app-middleware');

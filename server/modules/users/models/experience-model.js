@@ -3,28 +3,21 @@ const Schema = mongoose.Schema;
 
 const UserExperienceSchema = new Schema({
     company: [{
-        name: {
-            type: String,
-            required: true
-        },
+        name: String,
         description: String,
-        position: {
-            type: String,
-            required: true
-        },
-        period: [String],
+        position: String,
+        period: String,
         responsibility: [{
-            type: String,
-            required: true
+            type: String
+        }],
+        technologies: [{
+            variant: String,
+            name: String
+        }],
+        services: [{
+            variant: String,
+            name: String
         }]
-    }],
-    Technologies: [{
-        variant: String,
-        name: String
-    }],
-    services: [{
-        variant: String,
-        name: String
     }]
 }, { collection: 'Experience'})
 

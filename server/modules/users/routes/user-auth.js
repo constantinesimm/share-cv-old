@@ -3,7 +3,7 @@ const locale = require('../../../libs/i18n');
 const validate = require('../../../libs/validator');
 
 const ApiGuard = require('../../../middleware/api-guard');
-const HttpError = require('../../../libs/errors/http-error');
+const HttpError = require('../../../libs/http-error');
 const UserService = require('../services/user-service');
 
 router.post('/login', ApiGuard.isPublic, validate.loginOrRegister, (req, res, next) => UserService.authentication(req, res, next));

@@ -1,48 +1,43 @@
 import Axios from 'axios';
-import store from '@/store';
+import { mapGetters } from 'vuex';
 import { i18n } from '@/plugins/i18n';
 import AuthHeader from '@/services/api/auth-header';
 
-const getClient = (baseUrl = null) => {
-    let options = {
-        baseURL: baseUrl,
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json; charset=utf-8',
-            'Accept-Language': i18n.locale
-        }
-    };
-
-    Axios.interceptors.request.use(config => {
-        if (store.getters['auth/isLoggedIn']) config.headers.common['Authorization'] = `Bearer ${ AuthHeader.getToken() }`;
-    });
-
-    Axios.interceptors.response.use(
-        response => {
-            return response;
-        },
-        error => {
-            if (error.response.status === 401) store.dispatch('auth/logout', { email: store.getters['auth/getUser'].email });
-        }
-    );
-
-    
-    return Axios.create(options);
+let options = {
+    baseURL: process.env.NODE_ENV === 'production' ? 'https://share-cv.herokuapp.com' : 'http://localhost:3000',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json; charset=utf-8',
+        'Accept-Language': i18n.locale
+    }
 };
 
-class ApiClient {
-    constructor(baseUrl = null) {
-        this.client = getClient(baseUrl);
-    }
+const httpClient = Axios.create(options);
 
-    get(url, conf = {}) {
-        return this.client.get(url, conf)
+httpClient.interceptors.request.use(config => {
+    console.log('config', config)
+    if (AuthHeader.getToken()) config.headers['Authorization'] = AuthHeader.getToken();
+
+    return config;
+});
+
+httpClient.interceptors.response.use(
+    response => {
+        if (response.config.url.split('/').pop() === 'logout') AuthHeader.removeToken();
+
+        return response;
+    }
+)
+
+class ApiClient {
+    static get(url, conf = {}) {
+        return httpClient.get(url, conf)
             .then(response => Promise.resolve(response))
             .catch(error => Promise.reject(error));
     }
 
-    post(url, data = {}, conf= {}) {
-        return this.client.post(url, data, conf)
+    static post(url, data = {}, conf= {}) {
+        return httpClient.post(url, data, conf)
             .then(response => Promise.resolve(response))
             .catch(error => Promise.reject(error));
     }
