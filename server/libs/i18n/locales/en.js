@@ -10,7 +10,7 @@ module.exports = {
         resourceForbidden: 'Access to this resource is prohibited!',
         sessionExpired: 'The session has expired. Re-authorize',
         userEmailExists: 'User with this email exists',
-        userNotFound: 'Пользователь не найден',
+        userNotFound: 'User not found',
         userAlreadyRegister: 'User is already registered',
         userNotAuthenticated: 'Authorization is required to access this resource',
         onlyNotAuthUsers: 'The resource is available only to new visitors',

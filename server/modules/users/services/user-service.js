@@ -86,6 +86,17 @@ class UserService {
 
         })
     }
+
+    static findUserByEmail(data, msg) {
+        return new Promise((resolve, reject) => {
+            UserAuthModel.findOne({ email: data.email }, (err, user) => {
+                if (err) return reject({ status: 500, message: error.message });
+                if (!user) return reject({ status: 404, message: msg.error.userNotFound });
+
+                return resolve(user);
+            })
+        })
+    }
 }
 
 module.exports = UserService;

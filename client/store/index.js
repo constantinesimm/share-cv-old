@@ -1,25 +1,27 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
+import Storage from '@/plugins/storage';
 
 /**
  * Modules
  */
-import examp from './modules/examp';
+import auth from './modules/auth.module';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
-    examp
+    auth
   },
   plugins: [
       createPersistedState({
-        key: '$app_geoapteka'
-        /*
-        getState: key => ls.get(key),
-        setState: (key, state) => ls.set(key, state)
-        */
+        key: 'share-cv__state',
+        storage: {
+          getItem: (key) => Storage.getItem(key),
+          setItem: (key, data) => Storage.setItem(key, data),
+          removeItem: (key) => Storage.removeItem(key)
+        }
       })
   ]
 });

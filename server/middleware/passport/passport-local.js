@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const HttpError = require('../../libs/errors/http-error');
 const LocalStrategy = require('passport-local').Strategy;
+const Helper = require('../../modules/users/services/help-service');
 const UserService = require('../../modules/users/services/user-service');
 const UserAuthModel = require('../../modules/users/models/auth-model');
 

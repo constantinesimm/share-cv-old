@@ -49,14 +49,7 @@ export default {
         height: 20px;
         width: 20px;
     }
-    .el-input__prefix {
-        margin-top: 5px;
-        left: 12px!important;
-        cursor: pointer;
-    }
-    .el-input__suffix {
-        right: -8px!important;
-    }
+    
     .el-select {
         width: 50px;
     }

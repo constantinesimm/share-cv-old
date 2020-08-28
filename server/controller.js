@@ -8,13 +8,13 @@ const staticPath = path.join(__dirname, '../dist');
 
 /* Application API endpoints */
 const routes = {
-	account: require('./modules/users/routes/user-account')
+	auth: require('./modules/users/routes/user-auth')
 };
 
 /* Application controller handler */
 module.exports = app => {
-    app.use('/api/v1/users', routes.account);
-
+	app.use('/api/v1/users', routes.auth);
+	
 	// redirect to https in production;
 	if (global.isProduction) {
 		app.use((req, res, next) => {

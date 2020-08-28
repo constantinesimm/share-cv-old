@@ -1,5 +1,5 @@
 <script>
-    import Locale from '@/libs/i18n/locale';
+    import Locale from '@/plugins/i18n/locale';
 
     export default {
         name: 'SetDefaultLocale',

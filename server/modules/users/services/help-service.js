@@ -8,7 +8,7 @@ class Helper {
         return jwt.sign(data, sessionSecretString, { expiresIn: expiresTime })
     }
 
-    static verifyToken(type, token) {
+    static verifyToken(token) {
         return jwt.verify(token, sessionSecretString, {}, (error, decoded) => {
             return error ? error : decoded;
         })
