@@ -1,0 +1,28 @@
+{
+    "header": {
+        "nav-menu-show": "Show navigate menu",
+        "nav-menu-hide": "Hide navigate menu",
+        "change-locale": "Change app language",
+        "account": "Account",
+        "logout": "Log out"
+    },
+    "sidebar": {
+        "dashboard": "Dashboard",
+        "analytics": "Analytics",
+        "cv": "My CV",
+        "information": "My information"
+    },
+    "footer": {
+        "copyright": "© Kostiantyn Peschanov",
+        "contact-link": "Contact us"
+    },
+    "card": {
+        "image-side-title": "MAGIC IS IN THE DETAILS",
+        "error": {
+            "image-side-text": "Yes, it is indeed!",
+            "form-side-msg": "Ooops... looks like an error occurred!",
+            "form-side-codeText": "Error code",
+            "form-side-return-btn": "Go back home"
+        }
+    }
+}

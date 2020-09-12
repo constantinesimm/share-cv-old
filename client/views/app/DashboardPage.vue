@@ -1,12 +1,10 @@
 <template>
-    <main class="app-content" role="main">
-        <slot />
-    </main>
+    <div>dashboard page</div>
 </template>
 
 <script>
     export default {
-        name: 'DefaultLayout'
+        name: 'DashboardPage'
     }
 </script>
 

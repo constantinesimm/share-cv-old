@@ -1,6 +1,3 @@
-import AuthHeader from '@/services/api/auth-header';
-import AuthService from '@/services/api/auth-service';
-
 let state = {
     status: null,
     user: {},

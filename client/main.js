@@ -14,24 +14,18 @@ import router from './router';
 import store from './store';
 
 /* App packages */
-import { i18n } from '@/plugins/i18n';
+import i18n from '@/plugins/i18n';
 import AwesomeMask from 'awesome-mask';
-import VueAnalytics from 'vue-analytics'
+import VueMobileDetection from 'vue-mobile-detection';
 
 Vue.prototype.$eventHub = new Vue();
 Vue.config.productionTip = process.env.NODE_ENV !== 'production';
 
 Vue.directive('mask', AwesomeMask);
-
 Vue.use(SweetAlertIcons);
+Vue.use(ElementUI)
 
-Vue.use(ElementUI, {
-    i18n: (key, value) => i18n.t(key, value)
-})
-
-Vue.use(VueAnalytics, {
-    id: 'UA-158035852-2'
-});
+Vue.use(VueMobileDetection);
 
 new Vue({
     i18n,

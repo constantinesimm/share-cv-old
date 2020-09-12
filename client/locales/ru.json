@@ -1,0 +1,28 @@
+{
+    "header": {
+        "nav-menu-show": "Показать меню навигации",
+        "nav-menu-hide": "Спрятать меню навигации",
+        "change-locale": "Изменить язык",
+        "account": "Аккаунт",
+        "logout": "Выход"
+    },
+    "sidebar": {
+        "dashboard": "Дашборд",
+        "analytics": "Аналитика",
+        "cv": "Мои резюме",
+        "information": "Моя информация"
+    },
+    "footer": {
+        "copyright": "© Константин Песчанов",
+        "contact-link": "Связь с нами"
+    },
+    "card": {
+        "image-side-title": "МАГИЯ КРОЕТСЯ В ДЕТАЛЯХ",
+        "error": {
+            "image-side-text": "И это на самом деле!",
+            "form-side-msg": "Упс... похоже, произошла ошибка!",
+            "form-side-codeText": "Код ошибки",
+            "form-side-return-btn": "Вернуться на главную"
+        }
+    }
+}

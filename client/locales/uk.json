@@ -1,0 +1,28 @@
+{
+    "header": {
+        "nav-menu-show": "Показати меню навiгацiї",
+        "nav-menu-hide": "Сховати меню навiгацiї",
+        "change-locale": "Змiнити мову",
+        "account": "Аккаунт",
+        "logout": "Вихiд"
+    },
+    "sidebar": {
+        "dashboard": "Дашборд",
+        "analytics": "Аналiтика",
+        "cv": "Мої резюме",
+        "information": "Моя iнформацiя"
+    },
+    "footer": {
+        "copyright": "© Костянтин Песчанов",
+        "contact-link": "Зв'язок з нами"
+    },
+    "card": {
+        "image-side-title": "МАГІЯ СКРИВАЄТЬСЯ В ДЕТАЛЯХ",
+        "error": {
+            "image-side-text": "I це насправдi!",
+            "form-side-msg": "Упс... схоже, що сталася помилка!",
+            "form-side-codeText": "Код помилки",
+            "form-side-return-btn": "Повернутись на головну"
+        }
+    }
+}

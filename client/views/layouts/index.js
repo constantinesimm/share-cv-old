@@ -1,6 +1,6 @@
 import Vue from 'vue';
-import AdminLayout from '@/views/layouts/AdminLayout';
-import DefaultLayout from '@/views/layouts/DefaultLayout';
+import AdminLayout from './AppLayout';
+import DefaultLayout from './DefaultLayout';
 
-Vue.component('AdminLayout', AdminLayout);
-Vue.component('DefaultLayout', DefaultLayout);
+Vue.component(AdminLayout.name, AdminLayout);
+Vue.component(DefaultLayout.name, DefaultLayout);
